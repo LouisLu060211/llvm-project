@@ -2485,9 +2485,7 @@ LogicalResult mlir::linalg::vectorizeOpPrecondition(
     return failure();
 
   // More vector sizes than loops means the extra entries have no iteration
-  // space dimension to describe. The scalable precondition below indexes the
-  // iterator types by vector size position, so an oversized list would trip an
-  // out-of-bounds assertion there.
+  // space dimension to describe.
   if (auto linalgOp = dyn_cast<linalg::LinalgOp>(op))
     if (inputVectorSizes.size() > linalgOp.getNumLoops())
       return failure();
